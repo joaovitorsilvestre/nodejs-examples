@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs')
 
-var config = require('../config')
-var db_session = mongoose.createConnection(config.database_session)
+var db = mongoose.connection;
 
 var SessionIdSchema = new mongoose.Schema({
     identifier: {
@@ -21,7 +20,7 @@ var SessionIdSchema = new mongoose.Schema({
 })
 
 //// MODEL COMPILED
-var SessionId = db_session.model('SessionId', SessionIdSchema)
+var SessionId = db.model('SessionId', SessionIdSchema)
 
 //// EXPORTS
 exports.model = SessionId

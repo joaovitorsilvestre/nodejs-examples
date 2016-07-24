@@ -1,22 +1,34 @@
 var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+var http = require('http');
+var path = require('path')
 var bodyParser = require('body-parser');
+// var favicon = require('serve-favicon');
+var logger = require('morgan');
 var mongoose = require('mongoose')
+var cookieParser = require('cookie-parser');
+var socketIO = require('socket.io');
+var config = require('./config');
 
-// controllers
-var indexCtrl = require('./controllers/indexCtrl');
-var accountsCtrl = require('./controllers/accountsCtrl');
+/**
+  * Import controllers and middlewares
+  */
+var chat = require('./controllers/chat');
+var accounts = require('./controllers/accounts');
 
+/**
+  * Server, app, socket.io and db setup
+  */
 var app = express();
+var server = http.createServer(app);
+var io = socketIO(server);
+var db = mongoose.connect(config.database);
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-// uncomment after placing your favicon in /public
+/**
+  * General setup
+  */
+app.set('views', path.join(__dirname + '/views'))
+app.set('view engine', 'ejs')
+app.use(express.static(__dirname + '/public'))
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -24,40 +36,39 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// utiliza os controllers
-app.use('/', indexCtrl);
-app.use('/accounts', accountsCtrl);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+/**
+  * Socket io
+  */
+io.on('connection', function(socket){
+    console.log("\033[33m\Info: \033[0m\ socket connected");
+    socket.on('disconnect', function(){
+        console.log("\033[33m\Info: \033[0m\ socket disconnect")
     });
-  });
-}
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
+    socket.on('chat', function(msg){
+        io.emit('chat', {'id': socket.id, 'message': msg})
+    })
+})
 
+/**
+  * Use controllers
+  */
+app.use('/chat', chat);
+app.use('/accounts', accounts);
 
-module.exports = app;
+/**
+  * error
+  */
+app.use(function(req, res, next){
+    res.render('error', {
+        errName: 'Page not found',
+        errMessage: 'Check the URL that you did this request'
+    })
+})
+
+/**
+  * Where the magic happens
+  */
+server.listen(3000, function(){
+    console.log('Server is now running at localhost:3000')
+})

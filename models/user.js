@@ -1,20 +1,20 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs')
+var bcrypt = require('bcryptjs');
+var config = require('../config');
 
-var config = require('../config')
-var db = mongoose.createConnection(config.database)
+var db = mongoose.connection;
 
-var UserSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        require: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        require: true
-    }
-})
+var UserSchema = mongoose.Schema({
+  username: {
+    type: String,
+    require: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    require: true
+  }
+});
 
 UserSchema.methods.passwordMatch = function(password){
     var match = bcrypt.compareSync(password, this.password);
@@ -27,11 +27,12 @@ UserSchema.pre('save', function(next) {
     next();
 });
 
-/// MODEL COMPILED
+/// Compiled
 var User = db.model('User', UserSchema);
 
 /// EXPORTS
-exports.model = User
+exports.model = User;
+
 
 exports.create = function(username, password, callback) {
     var newUser = new User({
