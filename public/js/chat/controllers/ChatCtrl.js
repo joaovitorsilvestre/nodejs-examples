@@ -1,17 +1,23 @@
-angular.module('chat').controller('ChatCtrl', ['$scope', 'Io',
-function($scope, Io) {
+angular.module('chat').controller('ChatCtrl', ['$scope','$timeout','Io','getUser',
+function($scope, $timeout, Io, getUser) {
+    var socketio = new Io( $scope.socketio );
+    getUser.username(function(user){
+        $scope.user = user.data.user;
+    });
     $scope.messages = [];
 
-    $scope.sendMessage = function(msg){
-        Io.emit('chat', msg);
+    $scope.sendMessage = function(){
+        var msg = $scope.msgInput
+        if (msg) {
+            socketio.emit('chat', {user:$scope.user, message:msg});
+        };
+        $scope.msgInput = null;
     }
 
-    Io.on('chat', function(data) {
-        $scope.$apply(function(){
-            $scope.messages.push('Socket ' + data.id + ' : ' + data.message );
-            $scope.msgInput = '';
-        });
+    socketio.on('chat', function(data) {
+        $timeout( function updateMessages(){
+            $scope.messages.push(data.user + ' : ' + data.message );
+        }, 300)
     })
-
 }
 ])

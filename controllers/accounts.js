@@ -5,6 +5,7 @@ var router = express.Router();
 var login = require('./accounts/login')
 var register = require('./accounts/register')
 var logout = require('./accounts/logout')
+var whoAmI = require('./accounts/whoAmI')
 
 router.route('/login')
     .get( login.get )
@@ -15,5 +16,7 @@ router.route('/register')
     .post( register.post )
 
 router.get('/logout', logout);
+
+router.get('/who-am-i', whoAmI)
 
 module.exports = router

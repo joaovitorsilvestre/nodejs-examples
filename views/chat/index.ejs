@@ -3,14 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title> <%= title %> </title>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <script src="/lib/angular.min.js"></script>
+        <script src="/lib/angular-cookies.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
         <script src="/js/chat/chatApp.js" ></script>
         <script src="/js/chat/controllers/ChatCtrl.js" ></script>
         <script src="/js/chat/services/socketio.js" ></script>
+        <script src="/js/chat/services/getUserService.js"></script>
     </head>
     <body ng-app="chat" ng-controller="ChatCtrl">
         <h2> Welcome to chat </h2>
+        <h3> {{ user }} </h3>
         <div>
             <ul>
                 <li ng-repeat="message in messages track by $index" >
@@ -18,9 +21,9 @@
                 </li>
             </ul>
         </div>
-        <form ng-submit="sendMessage(msgInput)" >
+        <form ng-submit="sendMessage()" >
             <input type="text" ng-model="msgInput" placeholder="...">
-            <input type="submit" name="name" value="Send">
+            <input type="submit" value="Send">
         </form>
     </body>
 </html>
