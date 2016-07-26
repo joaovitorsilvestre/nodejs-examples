@@ -72,3 +72,13 @@ app.use(function(req, res, next){
 server.listen(3000, function(){
     console.log('Server is now running at localhost:3000')
 })
+
+/**
+  * Close connection with database when server is shut down
+  */
+process.on('SIGINT', function(){
+    mongoose.connection.close(function() {
+        console.log('Disconnect from mongo database');
+        process.exit(0);
+    })
+})

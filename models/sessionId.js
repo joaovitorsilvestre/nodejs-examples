@@ -25,7 +25,7 @@ var SessionId = db.model('SessionId', SessionIdSchema)
 //// EXPORTS
 exports.model = SessionId
 
-exports.create = function(username, callback) {
+exports.create = function(username) {
     var randomId    = Math.random().toString(36).substr(2, 20);
     var expires     = new Date(Date.now() + (1000 * 60 * 60 * 24) );
 
@@ -36,9 +36,7 @@ exports.create = function(username, callback) {
     });
 
     newSession.save(function savingSessionInDb(err) {
-        if (err) {
-            throw new Error(err)
-        }
+        if (err) throw (err)
     });
 
     return newSession.toObject()
