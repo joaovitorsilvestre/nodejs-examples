@@ -4,7 +4,7 @@
   "description": "Simple example for my use",
   "main": "app.js",
   "scripts": {
-    "test": "test",
+    "test": "mocha ./tests/models/*.js",
     "start": "node app.js"
   },
   "author": "João Vitor",

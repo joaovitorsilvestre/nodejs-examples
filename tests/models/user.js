@@ -13,55 +13,48 @@ describe('User', function() {
     })
 
     it('Testing the creation of a new user', function(done) {
-        assert.doesNotThrow(function() {
-            User.create(_username, _password, function(err) {
-                if (err) throw err;
-
-                done()
-            })
+        User.create(_username, _password, function(err) {
+            expect(err).to.be.null;
+            done()
         })
     });
 
     it('Testing the findOneByUsername', function(done){
-        assert.doesNotThrow(function() {
-            User.findOneByUsername( _username, function(err, user) {
-                if (err) throw err;
+        User.findOneByUsername( _username, function(err, user) {
+            expect(err).to.be.null
 
-                expect(user).to.not.be.null;
-            });
+            expect(user).to.not.be.null;
+        });
 
-            User.findOneByUsername( 'usernameDoesntExist', function(err, user) {
-                if (err) throw err;
+        User.findOneByUsername( 'usernameDoesntExist', function(err, user) {
+            expect(err).to.be.null
 
-                expect(user).to.be.null;
+            expect(user).to.be.null;
 
-                done()
-            } )
+            done()
         })
     });
 
     it('Testing authentication', function(done) {
-        assert.doesNotThrow(function() {
-            User.authenticate(_username, _password, function(err, user) {
-                if (err) throw err;
+        User.authenticate(_username, _password, function(err, user) {
+            expect(err).to.be.null;
 
-                expect(user).to.not.be.null;
-                expect(user.username).to.equal( _username );
-                // there's a hash that crypt the password, so
-                // this verify if it is diferent of the original;
-                expect(user.password).to.not.equal( _password );
+            expect(user).to.not.be.null;
+            expect(user.username).to.equal( _username );
+            // there's a hash that crypt the password, so
+            // this verify if it is diferent of the original;
+            expect(user.password).to.not.equal( _password );
 
-                done()
-            })
+            done()
         })
     });
 
     after(function(done) {
-        var dropIndexesAndDb = new Promise(function(resolve, reject) {
+        var dropColectionsAndDb = new Promise(function(resolve, reject) {
             mongoose.connection.db.dropDatabase(resolve);
         });
 
-        dropIndexesAndDb.then(function() {
+        dropColectionsAndDb.then(function() {
             mongoose.connection.close(done)
         });
     })

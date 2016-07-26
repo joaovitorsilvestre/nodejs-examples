@@ -16,11 +16,12 @@ module.exports = {
                 };
 
                 if (user) {
-                    var newSession = SessionId.create( user.username );
-                    res.cookie( 'session_id', newSession.identifier,
-                        { expires: newSession.expires }
-                    );
-                    res.status(200).send()
+                    SessionId.create(user.username, function(session) {
+                        res.cookie( 'session_id', session.identifier,
+                            { expires: session.expires }
+                        );
+                        res.status(200).end()
+                    });
                 } else {
                     res.status(401).send('Wrong credentials')
                 }

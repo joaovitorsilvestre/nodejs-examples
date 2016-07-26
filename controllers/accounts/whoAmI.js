@@ -18,7 +18,7 @@ module.exports = function(req, res){
             res.clearCookie('session_id');
             res.render('error', {
                 errName: 'Sommething wrong with your credentials',
-                errMessage: 'SingUp again'
+                errMessage: 'Log in again'
             })
         }
     })

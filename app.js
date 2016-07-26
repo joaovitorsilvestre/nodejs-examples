@@ -78,7 +78,7 @@ server.listen(3000, function(){
   */
 process.on('SIGINT', function(){
     mongoose.connection.close(function() {
-        console.log('Disconnect from mongo database');
+        console.log('\033[32m\Disconnected from mongo database.\033[0m');
         process.exit(0);
     })
 })

@@ -5,8 +5,6 @@ var expect = chai.expect;
 
 var SessionId = require('../../models/sessionId');
 
-
-
 describe('SessionId', function() {
     before(function(done){
         _username = 'testing'
@@ -14,21 +12,19 @@ describe('SessionId', function() {
     })
 
     it('Creating new sessionId in db and test checkIdentifier', function(done) {
-        var newSession = SessionId.create(_username);
+        SessionId.create(_username, function(session) {
+            expect(session.identifier).to.exist;
+            expect(session.expires).to.exist;
+            expect(session.user).to.equal(_username);
 
-        expect(newSession.identifier).to.exist;
-        expect(newSession.expires).to.exist;
-        expect(newSession.user).to.equal(_username);
+            SessionId.checkIdentifier(session.identifier, function(err, user) {
+                expect(err).to.be.null;
 
-        SessionId.checkIdentifier(newSession.identifier, function(err, user) {
-            if (err) throw err;
-
-            expect(user).to.equal(_username);
-            done()
-        })
+                expect(user).to.equal(_username);
+                done()
+            })
+        });
     });
-
-
 
     after(function(done) {
         var dropIndexesAndDb = new Promise(function(resolve, reject) {
