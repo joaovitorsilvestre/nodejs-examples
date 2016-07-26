@@ -1,1 +1,4 @@
 /node_modules/*
+/public/lib*
+/bower_components/*
+**.log
