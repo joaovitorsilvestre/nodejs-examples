@@ -12,7 +12,9 @@ describe('SessionId', function() {
     })
 
     it('Creating new sessionId in db and test checkIdentifier', function(done) {
-        SessionId.create(_username, function(session) {
+        SessionId.create(_username, function(err, session) {
+            expect(err).to.be.null;
+
             expect(session.identifier).to.exist;
             expect(session.expires).to.exist;
             expect(session.user).to.equal(_username);

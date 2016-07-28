@@ -1,8 +1,12 @@
-angular.module('chat').controller('ChatCtrl', ['$scope','$timeout','Io','getUser',
-function($scope, $timeout, Io, getUser) {
+angular.module('chat').controller('ChatCtrl', ['$scope','$timeout', '$window','Io','getUser',
+function($scope, $timeout, $window, Io, getUser) {
     var socketio = new Io( $scope.socketio );
-    getUser.username(function(user){
-        $scope.user = user.data.user;
+    getUser.username(function(err, user){
+        if (err) {
+            $window.location.href = '/accounts/login';
+        } else {
+            $scope.user = user;
+        }
     });
     $scope.messages = [];
 

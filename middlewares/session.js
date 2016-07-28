@@ -5,13 +5,15 @@ module.exports = function(req, res, next){
     var session_id = req.cookies.session_id
 
     if (session_id) {
-        SessionId.checkIdentifier(session_id, function(err, user){
+        SessionId.checkIdentifier(session_id, function(err, username){
             if (err) {
                 res.status(500).end('Internal server error')
             }
-            if (user) {
-                req.user = user
-                next()
+            if (username) {
+                User.findOneByUsername(username, function(user) {
+                    req.user = user;
+                    next();
+                })
             } else {
                 res.status(401).end('Session expired')
             }

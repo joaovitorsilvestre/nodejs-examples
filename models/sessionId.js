@@ -29,36 +29,40 @@ exports.create = function(username, callback) {
     var randomId    = Math.random().toString(36).substr(2, 20);
     var expires     = new Date(Date.now() + (1000 * 60 * 60 * 24) );
 
-    var updateExisting = new Promise(function(resolve, reject) {
+    var createOrUpdate = new Promise(function(resolve, reject) {
         SessionId.findOne({user: username}, function(err, session) {
-            if (err) throw err;
+            if (err) reject(err);
 
             if (session) {
-                resolve(session)
+                resolve(session);
             } else {
-                reject()
+                resolve();
             }
-        })
+        });
     });
 
-    updateExisting.then(function(session) {
-        session.expires = expires;
-        session.save();
+    createOrUpdate.then(function(session) {
+        if (session) {
+            session.expires = expires;
+            session.save();
 
-        callback(session.toObject());
-    }).catch(function() {
-        var newSession = new SessionId({
-            identifier: randomId,
-            expires: expires,
-            user: username
-        });
+            callback(null, session.toObject());
+        } else {
+            var newSession = new SessionId({
+                identifier: randomId,
+                expires: expires,
+                user: username
+            });
 
-        newSession.save(function savingSessionInDb(err) {
-            if (err) throw (err);
+            newSession.save(function savingSessionInDb(err) {
+                if (err) return callback(err, null)
 
-            callback(newSession.toObject())
-        });
-    })
+                callback(null, newSession.toObject())
+            });
+        };
+    }).catch(function(err) {
+        callback(err, null);
+    });
 }
 
 exports.checkIdentifier = function(identifier, callback) {

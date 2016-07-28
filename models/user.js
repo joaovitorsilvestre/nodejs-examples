@@ -51,28 +51,28 @@ exports.create = function(username, password, callback) {
 
 exports.authenticate = function(username, password, callback){
     User.findOne({ username: username }, function(err, user){
-        if (err) callback(err);
+        if (err) return callback(err);
 
         if (user) {
             if ( user.passwordMatch(password) ) {
-                callback(null, user.toObject())
+                callback(null, user.toObject());
             } else {
-                callback(null, null)
+                callback(null, null);
             }
         } else {
-            callback(null, null)
+            callback(null, null);
         }
     })
 }
 
 exports.findOneByUsername = function(username, callback) {
     User.findOne({username:username}, function findOneUser(err, user){
-        if (err) callback(err, null)
+        if (err) return callback(err, null);
 
         if (user) {
-            callback(null, user.toObject())
+            callback(null, user.toObject());
         } else {
-            callback(null, null)
+            callback(null, null);
         }
     })
 }

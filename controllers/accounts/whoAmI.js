@@ -7,7 +7,7 @@ module.exports = function(req, res){
         if (err) throw err;
 
         if (user) {
-            res.writeHead(200, {"Content-Type": "application/json"});
+            res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
 
             var responseJson = JSON.stringify({
                 user: user
@@ -16,10 +16,11 @@ module.exports = function(req, res){
             res.end(responseJson);
         } else {
             res.clearCookie('session_id');
-            res.render('error', {
-                errName: 'Sommething wrong with your credentials',
-                errMessage: 'Log in again'
-            })
+            res.writeHead(401, {'Content-Type': "application/json"});
+            var error = Json.stringify({
+                'error': 'expired'
+            });
+            res.end(error)
         }
     })
 }
