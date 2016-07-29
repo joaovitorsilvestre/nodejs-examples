@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title> <%= title %> </title>
+        <link rel="stylesheet" type="text/css" href="/css/chat/index.css" />
         <script src="/lib/angular.min.js"></script>
         <script src="/lib/angular-cookies.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
@@ -14,16 +15,18 @@
     <body ng-app="chat" ng-controller="ChatCtrl">
         <h2> Welcome to chat </h2>
         <h3> {{ user }} </h3>
-        <div>
+        <div id="messages">
             <ul>
                 <li ng-repeat="message in messages track by $index" >
                     {{ message }}
                 </li>
             </ul>
         </div>
-        <form ng-submit="sendMessage()" >
-            <input type="text" ng-model="msgInput" placeholder="...">
-            <input type="submit" value="Send">
-        </form>
+        <div id="messageInput">
+            <form ng-submit="sendMessage()" >
+                <input type="text" ng-model="msgInput" placeholder="...">
+                <input type="submit" value="Send">
+            </form>
+        </div>
     </body>
 </html>

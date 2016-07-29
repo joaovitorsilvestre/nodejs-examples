@@ -1,13 +1,14 @@
 angular.module('socketio', []).factory('Io', function(){
-    var constructor = function(io) {
+    var constructor = function(io, nameSpace) {
+        var _io = io(nameSpace);
         this.on = function(socketName, callback){
-            io.on(socketName, function(data){
+            _io.on(socketName, function(data){
                 callback(data);
             })
         }
 
         this.emit = function(socketName, data){
-            io.emit(socketName, data);
+            _io.emit(socketName, data);
         }
     };
 

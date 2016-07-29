@@ -39,21 +39,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
   * Socket io
   */
-io.on('connection', function(socket){
-    console.log("\033[33m\Info: \033[0m\ socket connected");
-    socket.on('disconnect', function(){
-        console.log("\033[33m\Info: \033[0m\ socket disconnect")
-    });
-
-    socket.on('chat', function(data){
-        io.emit('chat', {'user': data.user, 'message': data.message})
-    })
-})
+var chatSpace = io.of('/chat');
+chatSpace.on('connection', chat.socketio);
 
 /**
   * Use controllers
   */
-app.use('/chat', chat);
+app.use('/chat', chat.router);
 app.use('/accounts', accounts);
 
 /**
