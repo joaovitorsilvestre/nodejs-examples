@@ -23,3 +23,11 @@ module.exports.get = function(key, callback) {
         };
     });
 };
+
+module.exports.DEL = function (key) {
+    client.DEL(key);
+};
+
+module.exports.quit = function() {
+    client.quit();
+}
