@@ -1,4 +1,6 @@
-var SessionId = require('../../models/sessionId')
+var crypto = require('crypto');
+var redisClient = require('../../commons/redisClient');
+
 var User = require('../../models/user')
 
 module.exports = {
@@ -15,16 +17,15 @@ module.exports = {
             };
 
             if (user) {
-                SessionId.create(user.username, function(err, session) {
-                    if (err) {
-                        res.status(500).send('Internal server error');
-                    };
+                var identifier = crypto.randomBytes(64).toString('hex');
+                var expireDate = new Date(Date.now() + (1000 * 60 * 60 * 24) );
 
-                    res.cookie( 'session_id', session.identifier,
-                        { expires: session.expires }
-                    );
-                    res.status(200).end()
+                redisClient.set(identifier, username);
+
+                res.cookie( 'session_id', identifier,{
+                    expires: expireDate
                 });
+                res.status(200).end()
             } else {
                 res.status(401).send('Wrong credentials')
             }

@@ -1,10 +1,17 @@
-var SessionId = require('../../models/sessionId')
+var redisClient = require('../../commons/redisClient');
 
 module.exports = function(req, res){
     var session_id = req.query.session_id
 
-    SessionId.checkIdentifier(session_id, function(err, user){
-        if (err) throw err;
+    redisClient.get(session_id, function(err, user) {
+        if (err) {
+            res.clearCookie('session_id');
+            res.writeHead(401, {'Content-Type': "application/json"});
+            var error = JSON.stringify({
+                'error': 'expired'
+            });
+            res.end(error);
+        };
 
         if (user) {
             res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
@@ -14,13 +21,6 @@ module.exports = function(req, res){
             });
 
             res.end(responseJson);
-        } else {
-            res.clearCookie('session_id');
-            res.writeHead(401, {'Content-Type': "application/json"});
-            var error = Json.stringify({
-                'error': 'expired'
-            });
-            res.end(error)
-        }
-    })
-}
+        };
+    });
+};

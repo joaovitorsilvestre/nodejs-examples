@@ -7,7 +7,7 @@ angular.module('chat').service('getUser', function($http, $cookies){
             method: 'GET',
             params: {session_id: session_id}
         }).then( function successCallback(response) {
-            callback(null, response.data.user)
+            callback(null, response.data.user);
         }, function errorCallback(response) {
             callback (response.data.error, null);
         })

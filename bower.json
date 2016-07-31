@@ -5,7 +5,6 @@
   "authors": [
     "João Vitor"
   ],
-  "directory" : "public/lib",
   "license": "MIT",
   "homepage": "https://github.com/joaovitorsilvestre/nodejs-example",
   "dependencies": {
