@@ -12,6 +12,7 @@ without have to waste time doing the setup of project.
 * <b>Redis</b>        - used to store sessionsIds;
 * <b>MongoDB</b>      - used to store users;
 * <b>Mocha & Chai</b> - for unit tests
+* <b>Socket.io</b>    - use websockets in node.. This 'example' comes with a mini-chat!
 
 # Ready for use
     sudo npm install -g bower
