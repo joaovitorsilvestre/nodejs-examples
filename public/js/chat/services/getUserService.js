@@ -9,7 +9,7 @@ angular.module('chat').service('getUser', function($http, $cookies){
         }).then( function successCallback(response) {
             callback(null, response.data.user);
         }, function errorCallback(response) {
-            callback (response.data.error, null);
+            callback (response.data.error);
         })
     }
 })

@@ -1,3 +1,3 @@
 module.exports = function(req, res, next) {
-    res.render('chat/index', {title: 'Chat'})
-}
+    res.render('chat/index', {title: 'Chat'});
+};

@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 //routes
-var login = require('./accounts/login')
-var register = require('./accounts/register')
-var logout = require('./accounts/logout')
-var whoAmI = require('./accounts/whoAmI')
+var login = require('./accounts/login');
+var register = require('./accounts/register');
+var logout = require('./accounts/logout');
+var whoAmI = require('./accounts/whoAmI');
 
 router.route('/login')
     .get( login.get )
@@ -17,6 +17,6 @@ router.route('/register')
 
 router.get('/logout', logout);
 
-router.get('/who-am-i', whoAmI)
+router.get('/who-am-i', whoAmI);
 
-module.exports = router
+module.exports = router;

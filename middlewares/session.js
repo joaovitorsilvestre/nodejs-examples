@@ -6,10 +6,10 @@ var errTypes = [
     {errName: 'Not Allowed', errMessage: 'You must be logged in'},
     {errName: 'Not Allowed', errMessage: 'Sommethin wrong with your credentials'},
     {errName: 'Internal server error', errMessage: 'Try again latter'},
-]
+];
 
 module.exports = function(req, res, next){
-    var session_id = req.cookies.session_id
+    var session_id = req.cookies.session_id;
 
     var findUserObject = new Promise(function(resolve, reject) {
         if (!session_id) reject(errTypes[0]);
@@ -21,7 +21,7 @@ module.exports = function(req, res, next){
                 if (err) reject(errTypes[2]);
 
                 if (user) {
-                    resolve(user)
+                    resolve(user);
                 } else {
                     reject(errTypes[1]);
                 };

@@ -18,8 +18,8 @@ var UserSchema = mongoose.Schema({
 
 UserSchema.methods.passwordMatch = function(password){
     var match = bcrypt.compareSync(password, this.password);
-    return match
-}
+    return match;
+};
 
 UserSchema.pre('save', function(next) {
     var hash = bcrypt.hashSync(this.password, 8);
@@ -42,12 +42,12 @@ exports.create = function(username, password, callback) {
 
     newUser.save(function(err) {
         if (err) {
-            callback(err)
+            callback(err);
         } else {
-            callback(null)
-        }
-    })
-}
+            callback(null);
+        };
+    });
+};
 
 exports.authenticate = function(username, password, callback){
     User.findOne({ username: username }, function(err, user){
@@ -60,19 +60,19 @@ exports.authenticate = function(username, password, callback){
                 callback(null, null);
             }
         } else {
-            callback(null, null);
-        }
-    })
-}
+            return callback(null, null);
+        };
+    });
+};
 
 exports.findOneByUsername = function(username, callback) {
     User.findOne({username:username}, function findOneUser(err, user){
-        if (err) return callback(err, null);
+        if (err) return callback(err);
 
         if (user) {
             callback(null, user.toObject());
         } else {
             callback(null, null);
-        }
-    })
-}
+        };
+    });
+};

@@ -27,11 +27,13 @@ describe('User', function() {
         });
 
         User.findOneByUsername( 'usernameDoesntExist', function(err, user) {
-            expect(err).to.be.null
+             //there's error only if it was internal as when occurs an error
+             //to connect to database
+            expect(err).to.be.null;
 
             expect(user).to.be.null;
 
-            done()
+            done();
         })
     });
 
@@ -45,8 +47,8 @@ describe('User', function() {
             // this verify if it is diferent of the original;
             expect(user.password).to.not.equal( _password );
 
-            done()
-        })
+            done();
+        });
     });
 
     after(function(done) {
@@ -55,7 +57,7 @@ describe('User', function() {
         });
 
         dropColectionsAndDb.then(function() {
-            mongoose.connection.close(done)
+            mongoose.connection.close(done);
         });
-    })
+    });
 });

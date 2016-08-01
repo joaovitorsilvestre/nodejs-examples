@@ -10,10 +10,10 @@ module.exports = {
 
         User.create(username, password, function(err) {
             if (err) {
-                res.status(500).send('internal server error' + err.errmsg)
+                res.status(500).send('internal server error' + err.errmsg);
             } else {
-                res.status(200).send()
-            }
-        })
+                res.status(200).send();
+            };
+        });
     }
-}
+};

@@ -1,7 +1,7 @@
 var redisClient = require('../../commons/redisClient');
 
 module.exports = function(req, res){
-    var session_id = req.query.session_id
+    var session_id = req.query.session_id;
 
     redisClient.get(session_id, function(err, user) {
         if (err) {
