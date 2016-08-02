@@ -3,7 +3,7 @@ I came from Django where login, sessions, database is all
 already configured for you. So, I use this repo to add
 things that I'm testing and using. 
 
-Basicly is a base structure for test things and learn 
+Basicly, it's a base structure for test things and learn 
 without have to waste time doing the setup of project.
 
 # Things allready configured
@@ -14,7 +14,7 @@ without have to waste time doing the setup of project.
 * <b>Mocha & Chai</b> - for unit tests
 * <b>Socket.io</b>    - use websockets in node.. This 'example' comes with a mini-chat!
 
-# Ready for use
+# Ready to use
     sudo npm install -g bower
     sudo npm install -g mocha
     
