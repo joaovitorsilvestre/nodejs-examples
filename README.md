@@ -1,12 +1,12 @@
-# What is this and why i did it
+# This is an structure ready to build your own stuff
 I came from Django where login, sessions, database is all
 already configured for you. So, I use this repo to add
 things that I'm testing and using. 
 
-Basicly is a base structure for test things and learn 
+Basicly, it's a base structure for test things and learn 
 without have to waste time doing the setup of project.
 
-# Things allready configured
+# Things that are already configured
 * <b>AngularJS</b>    - need to explain?
 * <b>Bower</b>        - install front-end things;
 * <b>Redis</b>        - used to store sessionsIds;
@@ -14,7 +14,7 @@ without have to waste time doing the setup of project.
 * <b>Mocha & Chai</b> - for unit tests
 * <b>Socket.io</b>    - use websockets in node.. This 'example' comes with a mini-chat!
 
-# Ready for use
+# Make ready for use
     sudo npm install -g bower
     sudo npm install -g mocha
     
@@ -26,5 +26,6 @@ is pretty easy, just a command and will be installed.
 
 Now is ready for you change all you want.
 If you want things working you can use the follow commands:
+
     npm start # this start the server
     npm test  # run the tests to be sure 
