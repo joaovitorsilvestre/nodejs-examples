@@ -1,0 +1,17 @@
+{
+  "name": "mongodb",
+  "version": "1.0.0",
+  "description": "example of how use mongodb",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "mocha ./tests/*.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.8"
+  }
+}
