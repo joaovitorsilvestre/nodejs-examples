@@ -11,7 +11,7 @@ module.exports.router = router;
 module.exports.socketio = function(socket){
     console.log("\033[33m\Info: \033[0m\ socket connected");
     socket.on('disconnect', function(){
-        console.log("\033[33m\Info: \033[0m\ socket disconnect")
+        console.log("\033[33m\Info: \033[0m\ socket disconnect");
     });
 
     socket.on('message', function(data){

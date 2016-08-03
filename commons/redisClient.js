@@ -14,7 +14,7 @@ module.exports.set = function(key, value) {
 module.exports.get = function(key, callback) {
     client.get(key, function(err, value) {
         if (err) {
-            callback(err, null);
+            callback(err);
         };
         if (value) {
             return callback(null, value);
