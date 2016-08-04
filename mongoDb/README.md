@@ -10,7 +10,7 @@ them. For instance, if your controller <b>login</b> need to verify if a password
 is correct, who will do the search in db for the user is the model, the model
 has an function called <b>passwordCompare</b> and it will return if the password
 match.
-* Each model need to have their own .js file. It means that the models
+* Each model need to have their own <b>.js</b> file. It means that the models
 <b>product</b> and <b>cart</b> should be in their own files, with their own
 functions and methods.
 
