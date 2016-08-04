@@ -1,0 +1,55 @@
+body {
+    margin: 0
+}
+
+#messages {
+    width: 100%;
+    height: 90%;
+}
+
+#messages ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+#messages li {
+    width: 100%;
+    height: auto;
+    font-size: 26px;
+    background: #dadada
+}
+
+#messages li:nth-child(odd) {
+    background: #c9c9c9;
+}
+
+#messageInput {
+    width: 100%;
+    height: 10%;
+    bottom: 0;
+    position: fixed;
+}
+
+#messageInput form {
+    width: 100%;
+    height: 100%;
+}
+
+#messageInput input[type="text"] {
+    width: 89%;
+    height: 100%;
+    float: left;
+    font-size: 20px;
+}
+
+#messageInput input[type="submit"] {
+    width: 10%;
+    height: 100%;
+    border: 0;
+    background: #44a7a1;
+    font-size: 40px;
+}
+
+#messageInput input[type="submit"]:hover {
+    background: #44a777
+}

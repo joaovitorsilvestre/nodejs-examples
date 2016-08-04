@@ -1,7 +1,7 @@
 # Unit tests with Mocha & Chai
 
-To create unit tests to node.js, best way is to use Mocha and Chai together.
-Mocha is what do the tests, and Chai is used to throw error in a more
+To create unit tests to your node.js scripts, best way is to use Mocha and Chai
+together. Mocha is what do the tests, and Chai is used to throw error in a more
 intuictive way.
 
 What tests do is assert that the returned data from functions and modules
@@ -20,8 +20,9 @@ all the tests that test all your features to assert that them work perfectly tog
 Your folder tests can be:
 ```
 /tests
-  /models
-  /middlewares
-  /controllers
   /commons
+  /controllers
+  /middlewares
+  /models
+  /integration
 ```
