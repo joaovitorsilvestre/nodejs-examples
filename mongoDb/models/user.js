@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
-// This line will use the db that is allready in use
-// in the app.js.
+// This line will use the db that is allready in use in the app.js.
 var db = mongoose.connection;
 //// If you want use another database to store this models
 //// you can use the follow instead:
@@ -19,8 +18,8 @@ var UserSchema = mongoose.Schema({
     }
 });
 
-// You can want to add some methods to you model, so as example:
-// here we create an password to return true or false if is the right password
+// You can want to add some methods to your model
+// here we create an method to return true or false if is the right password
 UserSchema.methods.passwordMatch = function(passwordToCompare) {
     return this.password === passwordToCompare;
 }
@@ -35,7 +34,7 @@ UserSchema.pre('save', function(next) {
 // We need to compile this schema to can save at database
 var User = db.model('User', UserSchema);
 
-// Export the model compile to we use in others applications
+// Export the model compiled to we can use in others applications
 exports.model = User;
 
 // It's a good pratice to only make direct access from models to database

@@ -1,0 +1,11 @@
+{
+  "name": "basestructure",
+  "version": "1.0.0",
+  "description": "simple structure to projects in nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
+}
