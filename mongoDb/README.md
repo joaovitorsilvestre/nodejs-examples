@@ -1,8 +1,14 @@
 # Structure
-Use a folder called <b>models</b> to keep models organized. Se also the
-baseStructure folder to see a full example of structure based on MVC.
+You shold use a folder called <b>models</b> to keep models organized. This is the directory that
+you will use to keep your models, in this example we have a model called <b>user.js</b> that's
+pretty simple and just have two 'fields', that's to store username and password of our user.
 
-We use <b>mongoose</b> to do all hard work to us. To install you can use:
+You can also check the
+<a href="http://github.com/joaovitorsilvestre/nodejs-example/tree/master/baseStructure">baseStructure</a> 
+example to see a full structure based on MVC.
+
+<h2>Requirements</h2>
+In this example we use <b>mongoose</b> to do all the hard work to us. To install you can use:
 ```
 npm install mongoose --save
 ```
@@ -19,6 +25,6 @@ match.
 <b>product</b> and <b>cart</b> should be in their own files, with their own
 functions and methods.
 
-# Refs
-http://mongoosejs.com/docs/guide.html
-https://www.terlici.com/2014/08/25/best-practices-express-structure.html
+# References
+<a href="http://mongoosejs.com/docs/guide.html">Mongoose API</a> </br>
+<a href="https://www.terlici.com/2014/08/25/best-practices-express-structure.html">Best practices for express app structure</a>
