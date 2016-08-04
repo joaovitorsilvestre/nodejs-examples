@@ -57,7 +57,6 @@ exports.create = function(username, password, callback) {
 };
 
 // Also we can export another function that find an user based on username
-// remember, only models shold have access to database
 exports.findOneByUsername= function(username, callback) {
     User.findOne({username:username}, function findOneUser(err, user){
         // to handle connection erros

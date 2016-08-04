@@ -2,7 +2,12 @@
 Use a folder called <b>models</b> to keep models organized. Se also the
 baseStructure folder to see a full example of structure based on MVC.
 
-# Best practices
+We use <b>mongoose</b> to do all hard work to us. To install you can use:
+```
+npm install mongoose --save
+```
+
+# Best practices about models
 
 * Models should not know about external world, the same about others models.
 * Only models should have access to database, all hard work should be done by
@@ -15,4 +20,5 @@ match.
 functions and methods.
 
 # Refs
+http://mongoosejs.com/docs/guide.html
 https://www.terlici.com/2014/08/25/best-practices-express-structure.html

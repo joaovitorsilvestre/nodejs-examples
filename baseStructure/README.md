@@ -1,6 +1,7 @@
 # Structure
-This is an example of MVC structure.
+This is an example of MVC structure:
 ```
+/commons
 /controllers
   /home
   home.js

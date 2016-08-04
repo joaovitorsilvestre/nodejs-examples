@@ -5,6 +5,9 @@ var expect = chai.expect;
 
 var User = require('../models/user');
 
+// This is only to see if all works well, if you want to know how tests works
+// you should se the folder that has the full example of how create unit tests
+
 describe('User', function() {
     before(function(done){
         _username = 'test';

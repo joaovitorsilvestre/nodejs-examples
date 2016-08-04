@@ -1,0 +1,21 @@
+{
+  "name": "unittests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha ./tests/models/*.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.1"
+  },
+  "dependencies": {
+    "mongoose": "^4.5.8"
+  }
+}
