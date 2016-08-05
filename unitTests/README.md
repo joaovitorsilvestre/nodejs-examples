@@ -1,23 +1,30 @@
-# Unit tests with Mocha & Chai
+# Structure
 
-To create unit tests to your node.js scripts, best way is to use Mocha and Chai
-together. Mocha is what do the tests, and Chai is used to throw error in a more
-intuictive way.
+When you want create unit tests to your node.js scripts, the best way is to use 
+Mocha and Chai together. Mocha is what do the tests, and Chai is used to throw errors
+in a more intuitively way.
 
 What tests do is assert that the returned data from functions and modules
 are just as you expect them to be. Then, if in future you need to change some
 lines of code, you make your changes and run the unit test to make sure that
-this changes doesn't affect the functionality of module or function.
+this changes doesn't affect the functionality of the module.
 
-<h3>Best practices with tests</h3>
-You doesn't need to create tests to all your code, but it would be great if you
-do. If you want to use the module before in another application, you really
+# Best practices about unit tests
+* You doesn't need to create tests to all your code, but it would be great if you
+do. Also, if you want to use the module after in another application, you really
 should create a unit test to this.
 
-You also can create folder called <b>integration</b>. That will contain
-all the tests that test all your features to assert that them work perfectly together.
+* Your tests should cover much possibilities as possible. For instance, you have the
+model <b>user</b> that have a method that verify if the password that was given matchs
+with that is in the database.
+So, you'll need to test if there's no error to connect to database, or if the user that 
+you're tring to test the password even exists, etc.
 
-Your folder tests can be:
+* You also can create folder called <b>integration</b>. That will contain
+all the tests that test all your features working together to assert that them 
+work perfectly well.
+
+<h2>Example of structure of tests folder</h2>
 ```
 /tests
   /commons
@@ -26,3 +33,8 @@ Your folder tests can be:
   /models
   /integration
 ```
+
+# References
+<a href="https://mochajs.org/">Mocha API</a> </br>
+<a href="http://chaijs.com/api/">Chai API</a> </br>
+<a href="https://www.terlici.com/2014/08/25/best-practices-express-structure.html">Best practices for express app structure</a>
