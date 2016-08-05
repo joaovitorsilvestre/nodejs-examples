@@ -9,6 +9,36 @@ are just as you expect them to be. Then, if in future you need to change some
 lines of code, you make your changes and run the unit test to make sure that
 this changes doesn't affect the functionality of the module.
 
+<h2>Requirements</h2>
+In this example we use <b>mongoose</b> because what we where testing was the models.
+But to create tests you only need Mocha and Chai installed. You can install with the follow commands:
+```
+npm install mocha
+npm install chai
+```
+To execute the tests:
+```
+mocha ./tests/models/user.js ## here you can change to test only one test
+mocha ./tests/*/*.js         ## this will run all tests that mocha could find
+```
+
+<hr>
+
+Also you can run all tests with npm, you'll just need to can change the <b>package.json</b> as follows:
+```
+{
+  ...
+  "scripts": {
+    "test": "mocha ./tests/*/*.js"
+  }
+  ...
+}
+```
+After you save, just execute in shell:
+```
+npm test
+```
+
 # Best practices about unit tests
 * You doesn't need to create tests to all your code, but it would be great if you
 do. Also, if you want to use the module after in another application, you really
