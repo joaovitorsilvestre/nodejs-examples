@@ -1,0 +1,23 @@
+{
+  "name": "redis-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "redis": "^2.6.2",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.1"
+  },
+  "scripts": {
+    "start": "node app",
+    "test": "mocha ./tests/*/*.js"
+  },
+  "author": "João Vitor Silvestre",
+  "license": "ISC"
+}
