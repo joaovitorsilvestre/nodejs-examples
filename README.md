@@ -20,3 +20,8 @@ and also the best practices that was used in examples.
 The folder called <b>full_example</b> is where I will use to store
 more complex examples, but this will be using various modules at the same
 time. Because there are a system with sessions, websockets, mongodb, redis, etc.
+
+<h2>Generate Project</h2>
+It's a script to generate a express project structure. There are already a tool
+to do this, that is called express-generator, but I prefer to create one for
+my own needs.
